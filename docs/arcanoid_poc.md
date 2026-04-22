@@ -2,7 +2,24 @@
 
 A simple **Arcanoid POC** is a small prototype that proves the core gameplay works.
 
-The game starts with a **paddle** near the bottom of the screen, a **ball** placed above it, and a small wall of **bricks** near the top. The player moves the paddle left and right to keep the ball in play.
+The game starts with a **paddle** near the bottom of the screen, a **ball** placed above it, and a small wall of colorful **bricks** near the top. The player moves the paddle left and right to keep the ball in play.
+
+## Bricks
+
+Use 6 briks in one line.
+
+## Keys
+
+User uses buttons A and D to move paddle to left and right.
+User uses Space button to start the ball and throw a ball in the beginning.
+First hit angle is random between -45 and +45 degerees at vertical.
+
+## Colors
+
+Game background is black.
+Paddle color is gray.
+Ball color is light gray.
+Use different random colors foir bricks.
 
 ## Ball movement
 
@@ -17,7 +34,7 @@ On every frame, the game updates the ball position. Then it checks whether the b
 
 When the ball touches a brick:
 
-- that brick is removed from the screen
+- that brick dissapearing from the screen. Use 0.5 second animation.
 - the score increases
 - the ball changes direction, usually by reversing its vertical movement, or horizontal movement depending on which side of the brick was hit
 - a hit sound or small visual flash may play in a more advanced version
@@ -94,7 +111,7 @@ The POC usually has two end states.
 
 ## Example gameplay flow
 
-1. Player starts the ball.
+1. At first ball is shown right on the paddle. Player starts the ball.
 2. Ball moves upward.
 3. Ball hits a brick.
 4. Brick disappears, score increases, ball bounces back.
