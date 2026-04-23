@@ -1,7 +1,7 @@
 export const CANVAS_W = 800;
 export const CANVAS_H = 600;
 
-export const PADDLE_W = 100;
+export const PADDLE_W = 130;
 export const PADDLE_H = 12;
 export const PADDLE_SPEED = 500;
 
