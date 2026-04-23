@@ -88,7 +88,7 @@ When the user asks to "plan a step" (or equivalent phrasing like "add a step", "
 
 Both actions are always done together, without the user having to ask for each separately.
 
-### GitHUb integration
+### GitHub integration
 
 When creating items in GitHub always use ArcanoidTest GitHub project. Create items in Backlog and give a name to each item "Step-number short description". Add a short description to each item. Try to figure out what was the latest used step number in the current session and add +1 to each step.
 
