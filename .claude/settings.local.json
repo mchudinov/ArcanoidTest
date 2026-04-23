@@ -13,7 +13,9 @@
       "Bash(git push *)",
       "Bash(gh pr *)",
       "Bash(git pull *)",
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(i.get\\('id'\\), i.get\\('title'\\), i.get\\('status'\\)\\) for i in d.get\\('items',[]\\)]\")",
+      "Bash(npx vitest *)"
     ]
   }
 }
