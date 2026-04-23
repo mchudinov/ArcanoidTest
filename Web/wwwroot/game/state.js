@@ -3,6 +3,7 @@ import {
   CANVAS_H,
   PADDLE_W,
   PADDLE_H,
+  PADDLE_SPEED,
   BALL_R,
   BALL_SPEED,
   BRICK_COUNT,
@@ -12,6 +13,7 @@ import {
   BRICK_TOP_Y,
   LAUNCH_ANGLE_MAX_DEG,
 } from './constants.js';
+import { resolveWalls, resolvePaddle, resolveBricks } from './collision.js';
 
 const BRICK_COLORS = ['#e53935', '#fb8c00', '#fdd835', '#43a047', '#1e88e5', '#8e24aa'];
 const PADDLE_BOTTOM_MARGIN = 20;
@@ -57,4 +59,38 @@ export function launchBall(state, rng) {
   state.ball.vx = Math.sin(angleRad) * BALL_SPEED;
   state.ball.vy = -Math.cos(angleRad) * BALL_SPEED;
   state.status = 'playing';
+}
+
+export function step(state, dt) {
+  const { paddle, ball, bricks, input } = state;
+
+  let paddleVx = 0;
+  if (input.leftHeld) paddleVx -= PADDLE_SPEED;
+  if (input.rightHeld) paddleVx += PADDLE_SPEED;
+  paddle.x += paddleVx * dt;
+  if (paddle.x < 0) paddle.x = 0;
+  if (paddle.x > CANVAS_W - PADDLE_W) paddle.x = CANVAS_W - PADDLE_W;
+
+  if (state.status === 'ready') {
+    ball.x = paddle.x + PADDLE_W / 2;
+    ball.y = paddle.y - BALL_R;
+    return;
+  }
+
+  if (state.status !== 'playing') return;
+
+  ball.x += ball.vx * dt;
+  ball.y += ball.vy * dt;
+
+  resolveWalls(ball);
+  resolvePaddle(ball, paddle);
+  resolveBricks(ball, bricks);
+
+  if (ball.y - ball.r > CANVAS_H) {
+    state.status = 'lost';
+    return;
+  }
+  if (bricks.every((b) => !b.alive)) {
+    state.status = 'won';
+  }
 }
